@@ -18,3 +18,4 @@
 
 # Ignore Spring file
 /spring/*.pid
+.byebug_history
