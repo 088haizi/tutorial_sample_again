@@ -30,4 +30,16 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path
     assert_select 'a', text: 'delete', count: 0
   end
+
+  test "unactivated user should not be available through web request" do
+    log_in_as(@non_admin)
+    first_page_of_users = User.paginate(page: 1)
+    unactivated_user = first_page_of_users.last
+    unactivated_user.update_attribute(:activated, false)
+    get users_path
+    assert_select 'a[href=?]', user_path(unactivated_user), text: unactivated_user.name, count: 0
+    get user_path(unactivated_user)
+    follow_redirect!
+    assert_template 'static_pages/home'
+  end
 end
