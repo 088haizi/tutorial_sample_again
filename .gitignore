@@ -19,3 +19,9 @@
 # Ignore Spring file
 /spring/*.pid
 .byebug_history
+
+# Ignore production config file
+config/environments/production.rb
+
+# Ignore backup file
+*backup.*
