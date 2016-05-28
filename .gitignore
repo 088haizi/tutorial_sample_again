@@ -26,3 +26,6 @@ config/environments/production.rb
 
 # Ignore backup file
 *backup.*
+
+# Ignore uploaded test images.
+/public/uploads
